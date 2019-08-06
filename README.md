@@ -1,2 +1,2 @@
-# easy_algp
+# easy_algo
 traditional algorithms
