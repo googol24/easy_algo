@@ -1,2 +1,3 @@
 # easy_algo
-traditional algorithms
+
+some traditional algorithms based on PHP
