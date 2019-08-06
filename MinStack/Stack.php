@@ -50,7 +50,7 @@ class Stack
         // 栈顶元素下标
         $topIndex = $this->top - 1;
 
-        if (empty($this->top) || $this->minElements[$topIndex] > $e) {
+        if (($topIndex < 0) || $this->minElements[$topIndex] > $e) {
             $this->minElements[$this->top] = $e;
         } else {
             $this->minElements[$this->top] = $this->minElements[$topIndex];
@@ -69,6 +69,11 @@ class Stack
     {
         // 栈顶元素下标
         $topIndex = $this->top - 1;
+
+        if ($topIndex < 0) {
+            // 空栈
+            return null;
+        }
 
         $topElement = $this->elements[$topIndex];
 
