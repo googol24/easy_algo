@@ -97,6 +97,11 @@ class Stack
         // 栈顶元素下标
         $topIndex = $this->top - 1;
 
+        if ($topIndex < 0) {
+            // 空栈
+            return null;
+        }
+
         return $this->minElements[$topIndex];
     }
 
