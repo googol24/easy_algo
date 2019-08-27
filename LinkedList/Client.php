@@ -42,3 +42,7 @@ $list->reverse();
 
 // 查看单链表
 $list->printLinkedList();
+
+// 查找单链表中间结点
+$middleNode = $list->getMiddleNode();
+echo '中间结点：' . $middleNode->getNodeValue() . PHP_EOL;

@@ -122,6 +122,25 @@ class LinkedList
     }
 
     /**
+     * 查找单链表的中间结点
+     *
+     * @return Node|null
+     *
+     */
+    public function getMiddleNode()
+    {
+        $slowPointer = $this->head;
+        $fastPointer = $slowPointer;
+
+        while ($slowPointer->getNextNode() && $fastPointer->getNextNode() && $fastPointer->getNextNode()->getNextNode()) {
+            $slowPointer = $slowPointer->getNextNode();
+            $fastPointer = $fastPointer->getNextNode()->getNextNode();
+        }
+
+        return $slowPointer;
+    }
+
+    /**
      * 单链表的就地逆置（反转）
      * 思想：采用头插法以及辅助指针，空间复杂度O(1)
      */
