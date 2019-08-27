@@ -49,3 +49,19 @@ echo '中间结点：' . $middleNode->getNodeValue() . PHP_EOL;
 
 // 查找倒数第k个结点
 echo '倒数第3个结点：' . $list->getKthLastNode(3)->getNodeValue() . PHP_EOL;
+
+// 构造一个有环链表
+$ringList = new LinkedList();
+$ringList->addNodeToTail(new Node(1));
+$ringList->addNodeToTail(new Node(2));
+$ringList->addNodeToTail(new Node(3));
+$ringList->addNodeToTail(new Node(4));
+$ringList->addNodeToTail(new Node(5));
+$ringList->addNodeToTail(new Node(6));
+
+// 设置环
+$ringList->getTailNode()->setNextNode($ringList->getMiddleNode());
+
+// 判断是否有环
+echo 'list是否有环：' . ($list->hasRing() ? '是' : '否') . PHP_EOL;
+echo 'ringList是否有环：' . ($ringList->hasRing() ? '是' : '否') . PHP_EOL;

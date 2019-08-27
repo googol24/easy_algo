@@ -141,6 +141,45 @@ class LinkedList
     }
 
     /**
+     * 获取尾结点
+     *
+     * @return Node
+     *
+     */
+    public function getTailNode()
+    {
+        $p = $this->head;
+
+        while ($p->getNextNode()) {
+            $p = $p->getNextNode();
+        }
+
+        return $p;
+    }
+
+    /**
+     * 检查是否有环
+     *
+     * @return bool
+     *
+     */
+    public function hasRing()
+    {
+        $p = $q = $this->head;
+
+        while ($p->getNextNode() && $q->getNextNode()->getNextNode() && $p->getNextNode() !== $q->getNextNode()->getNextNode()) {
+            $p = $p->getNextNode();
+            $q = $q->getNextNode()->getNextNode();
+        }
+
+        if ($p->getNextNode() === $q->getNextNode()->getNextNode()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * 查找单链表中的倒数第k个结点
      *
      * @param int $k
