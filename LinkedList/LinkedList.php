@@ -35,6 +35,25 @@ class LinkedList
     }
 
     /**
+     * 尾插法添加结点
+     *
+     * @param Node $newNode
+     *
+     */
+    public function addNodeToTail($newNode)
+    {
+        // 寻找尾部指针
+        $tail = $this->head;
+
+        while ($tail->getNextNode()) {
+            $tail = $tail->getNextNode();
+        }
+
+        // 尾部插入
+        $tail->setNextNode($newNode);
+    }
+
+    /**
      * 打印显示链表
      */
     public function printLinkedList()
