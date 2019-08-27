@@ -46,3 +46,6 @@ $list->printLinkedList();
 // 查找单链表中间结点
 $middleNode = $list->getMiddleNode();
 echo '中间结点：' . $middleNode->getNodeValue() . PHP_EOL;
+
+// 查找倒数第k个结点
+echo '倒数第3个结点：' . $list->getKthLastNode(3)->getNodeValue() . PHP_EOL;

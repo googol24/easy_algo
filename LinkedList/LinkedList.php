@@ -141,6 +141,33 @@ class LinkedList
     }
 
     /**
+     * 查找单链表中的倒数第k个结点
+     *
+     * @param int $k
+     *
+     * @return Node|null
+     */
+    public function getKthLastNode($k)
+    {
+        $p = $q = $this->head;
+
+        for ($i = 0; $i < $k; $i++) {
+            $q = $q->getNextNode();
+            if (!$q) {
+                echo '链表长度小于k！';
+                exit(-1);
+            }
+        }
+
+        while ($q) {
+            $p = $p->getNextNode();
+            $q = $q->getNextNode();
+        }
+
+        return $p;
+    }
+
+    /**
      * 单链表的就地逆置（反转）
      * 思想：采用头插法以及辅助指针，空间复杂度O(1)
      */
