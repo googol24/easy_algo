@@ -30,3 +30,9 @@ $list->addNodeToTail(new Node('h'));
 
 // 查看单链表
 $list->printLinkedList();
+
+// 删除某个结点
+$list->deleteNode('c');
+
+// 查看单链表
+$list->printLinkedList();
