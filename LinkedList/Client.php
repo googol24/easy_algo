@@ -36,3 +36,9 @@ $list->deleteNode('c');
 
 // 查看单链表
 $list->printLinkedList();
+
+// 就地逆置该单链表
+$list->reverse();
+
+// 查看单链表
+$list->printLinkedList();

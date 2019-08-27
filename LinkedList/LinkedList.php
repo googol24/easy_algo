@@ -122,6 +122,35 @@ class LinkedList
     }
 
     /**
+     * 单链表的就地逆置（反转）
+     * 思想：采用头插法以及辅助指针，空间复杂度O(1)
+     */
+    public function reverse()
+    {
+        // 当链表不为空时
+        if ($this->head->getNextNode()) {
+
+            // 遍历指针
+            $p = $this->head->getNextNode();
+
+            // 断链
+            $this->head->setNextNode(null);
+
+            while ($p) {
+                // 辅助指针
+                $q = $p->getNextNode();
+
+                // 头插法
+                $p->setNextNode($this->head->getNextNode());
+                $this->head->setNextNode($p);
+
+                // 前进
+                $p = $q;
+            }
+        }
+    }
+
+    /**
      * 打印显示链表
      */
     public function printLinkedList()
