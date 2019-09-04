@@ -44,3 +44,6 @@ $binTree->inOrderPrint();
 
 echo PHP_EOL . '后序遍历：';
 $binTree->postOrderPrint();
+
+echo PHP_EOL . '广度优先遍历：';
+$binTree->levelOrderPrint();
