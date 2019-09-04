@@ -47,3 +47,7 @@ $binTree->postOrderPrint();
 
 echo PHP_EOL . '广度优先遍历：';
 $binTree->levelOrderPrint();
+
+echo PHP_EOL . '二叉树深度：' . $binTree->getDepth();
+
+echo PHP_EOL . '二叉树宽度：' . $binTree->getWidth();

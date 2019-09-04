@@ -138,4 +138,67 @@ class BinaryTree
             }
         }
     }
+
+    /**
+     * 获取深度
+     *
+     * @return int
+     *
+     */
+    public function getDepth()
+    {
+        return $this->getDepthOfNode($this->rootNode);
+    }
+
+    /**
+     * 递归获取指定结点的深度
+     *
+     * @param BinaryTreeNode $node
+     *
+     * @return int
+     *
+     */
+    private function getDepthOfNode($node)
+    {
+        if (!$node) {
+            return 0;
+        }
+
+        return 1 + max($this->getDepthOfNode($node->getLChildNode()), $this->getDepthOfNode($node->getRChildNode()));
+    }
+
+    /**
+     * 获取宽度
+     * 借助队列
+     *
+     * @return int
+     *
+     */
+    public function getWidth()
+    {
+        $queue = [];
+
+        if (!empty($this->rootNode)) {
+            array_push($queue, $this->rootNode);
+        }
+
+        $width = 0;
+
+        while (!empty($queue)) {
+            /** @var BinaryTreeNode $node */
+            $node = array_shift($queue);
+
+            if ($node->getLChildNode()) {
+                array_push($queue, $node->getLChildNode());
+            }
+
+            if ($node->getRChildNode()) {
+                array_push($queue, $node->getRChildNode());
+            }
+
+            $width = max($width, count($queue));
+        }
+
+        return $width;
+    }
 }
