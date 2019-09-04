@@ -51,3 +51,5 @@ $binTree->levelOrderPrint();
 echo PHP_EOL . '二叉树深度：' . $binTree->getDepth();
 
 echo PHP_EOL . '二叉树宽度：' . $binTree->getWidth();
+
+echo PHP_EOL . '二叉树中叶节点的个数：' . $binTree->getLeafNumber();

@@ -164,7 +164,10 @@ class BinaryTree
             return 0;
         }
 
-        return 1 + max($this->getDepthOfNode($node->getLChildNode()), $this->getDepthOfNode($node->getRChildNode()));
+        return 1 + max(
+                $this->getDepthOfNode($node->getLChildNode()),
+                $this->getDepthOfNode($node->getRChildNode())
+            );
     }
 
     /**
@@ -200,5 +203,37 @@ class BinaryTree
         }
 
         return $width;
+    }
+
+    /**
+     * 获取二叉树的叶子节点个数
+     *
+     * @return int
+     *
+     */
+    public function getLeafNumber()
+    {
+        return $this->getLeafNumberOfNode($this->rootNode);
+    }
+
+    /**
+     * 递归根据某个结点获取以该结点为根的子树中的叶节点的数目
+     *
+     * @param BinaryTreeNode $node
+     *
+     * @return int
+     *
+     */
+    private function getLeafNumberOfNode($node)
+    {
+        if (!$node) {
+            return 0;
+        }
+
+        if (!$node->getLChildNode() && !$node->getRChildNode()) {
+            return 1;
+        }
+
+        return $this->getLeafNumberOfNode($node->getLChildNode()) + $this->getLeafNumberOfNode($node->getRChildNode());
     }
 }
