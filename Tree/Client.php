@@ -19,9 +19,15 @@ $nodeG = new BinaryTreeNode('G');
 // 以A结点为根节点建立二叉树
 /*
  *             A
- *       B             C
- *   D            E         F
- *                   G
+ *           *   *
+ *         *      *
+ *        B        C
+ *       *        *  *
+ *      *        *    *
+ *     D        E      F
+ *               *
+ *                 *
+ *                  G
 */
 $binTree = new BinaryTree($nodeA);
 
