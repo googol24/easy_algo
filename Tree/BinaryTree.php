@@ -274,7 +274,7 @@ class BinaryTree
         }
 
         // 左子树寻找结果
-        $leftRes = $this->findLCAOfNode($rootNode->getLChildNode(), $node1, $node2);
+        $leftRes  = $this->findLCAOfNode($rootNode->getLChildNode(), $node1, $node2);
 
         // 右子树寻找结果
         $rightRes = $this->findLCAOfNode($rootNode->getRChildNode(), $node1, $node2);
@@ -286,5 +286,89 @@ class BinaryTree
 
         // 都在左子树或者都在右子树
         return $leftRes ? $leftRes : $rightRes;
+    }
+
+    /**
+     * 获取树中某个结点的父节点（最近父节点）
+     *
+     * @param BinaryTreeNode $node
+     *
+     * @return BinaryTreeNode|null
+     *
+     */
+    public function getParentNode($node)
+    {
+        return $this->getParentNodeOfNode($this->rootNode, $node);
+    }
+
+    /**
+     * 获取以某个结点为根的树中中指定结点的父节点
+     *
+     * @param BinaryTreeNode $rootNode
+     * @param BinaryTreeNode $node
+     *
+     * @return BinaryTreeNode|null
+     *
+     */
+    private function getParentNodeOfNode($rootNode, $node)
+    {
+        // 空树或者根节点没有父节点
+        if (!$rootNode || $node === $rootNode) {
+            return null;
+        }
+
+        // 根节点的子节点，父节点一定是该根节点
+        if ($node === $rootNode->getLChildNode() || $node === $rootNode->getRChildNode()) {
+            return $rootNode;
+        }
+
+        // 递归地在子树中寻找
+        $leftRes  = $this->getParentNodeOfNode($rootNode->getLChildNode(), $node);
+        $rightRes = $this->getParentNodeOfNode($rootNode->getRChildNode(), $node);
+
+        // 在子树中找到，则父节点为子树根节点
+        return $leftRes ? $leftRes : $rightRes;
+    }
+
+    /**
+     * 获取树中某个结点的所有祖先结点
+     *
+     * @param BinaryTreeNode $node
+     *
+     * @return array
+     *
+     */
+    public function getAllAncestors($node)
+    {
+        $ancestorNodes = [];
+
+        if ($node) {
+            while ($this->getParentNode($node)) {
+                $node = $this->getParentNode($node);
+                $ancestorNodes[] = $node;
+            }
+        }
+
+        return $ancestorNodes;
+    }
+
+    /**
+     * 获取结点数组的结点值数组
+     *
+     * @param array $nodes
+     *
+     * @return array|null
+     *
+     */
+    public function getNodeValues($nodes)
+    {
+        if ($nodes) {
+            return array_map(function ($node) {
+                /** @var BinaryTreeNode $node */
+                return $node->getNodeValue();
+            }, $nodes);
+        }
+
+        return null;
     }
 }
