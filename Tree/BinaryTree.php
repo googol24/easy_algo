@@ -236,4 +236,55 @@ class BinaryTree
 
         return $this->getLeafNumberOfNode($node->getLChildNode()) + $this->getLeafNumberOfNode($node->getRChildNode());
     }
+
+    /**
+     * 寻找两个结点的最近公共祖先(Lowest Common Ancestor)
+     *
+     * @param BinaryTreeNode $node1
+     * @param BinaryTreeNode $node2
+     *
+     * @return BinaryTreeNode|null
+     *
+     */
+    public function findLCA($node1, $node2)
+    {
+        return $this->findLCAOfNode($this->rootNode, $node1, $node2);
+    }
+
+    /**
+     * 根据某个结点递归获取在以该结点为根的子树中两个指定结点的 LCA
+     *
+     * @param BinaryTreeNode $rootNode
+     * @param BinaryTreeNode $node1
+     * @param BinaryTreeNode $node2
+     *
+     * @return BinaryTreeNode|null
+     *
+     */
+    private function findLCAOfNode($rootNode, $node1, $node2)
+    {
+        // 空树
+        if (!$rootNode) {
+            return null;
+        }
+
+        // 其中有一个结点是根节点
+        if ($rootNode === $node1 || $rootNode === $node2) {
+            return $rootNode;
+        }
+
+        // 左子树寻找结果
+        $leftRes = $this->findLCAOfNode($rootNode->getLChildNode(), $node1, $node2);
+
+        // 右子树寻找结果
+        $rightRes = $this->findLCAOfNode($rootNode->getRChildNode(), $node1, $node2);
+
+        // 寻找结果分别在左右子树，则LCA是这两个子树的根节点
+        if ($leftRes && $rightRes) {
+            return $rootNode;
+        }
+
+        // 都在左子树或者都在右子树
+        return $leftRes ? $leftRes : $rightRes;
+    }
 }
