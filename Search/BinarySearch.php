@@ -15,7 +15,7 @@ function binarySearch($arr, $key)
     $high = count($arr) - 1;
 
     while ($low <= $high) {
-        $mid = floor(($low + $high) / 2);
+        $mid = intval(($low + $high) / 2);
 
         if ($arr[$mid] == $key) {
             return $mid;
