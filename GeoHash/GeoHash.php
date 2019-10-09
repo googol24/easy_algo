@@ -51,19 +51,19 @@ class GeoHash
      * 通过以上知识，可以得到：
      * 奇数位字符（如hash值wx4g里面的w、4）查表
      *  b  c  f  g  u  v  y  z
-    8  9  d  e  s  t  w  x
-    2  3  6  7  k  m  q  r
-    0  1  4  5  h  j  n  p
+        8  9  d  e  s  t  w  x
+        2  3  6  7  k  m  q  r
+        0  1  4  5  h  j  n  p
      *
      * 偶数位字符（如hash值wx4g里面的x、g）查表
      *  p  r  x  z
-    n  q  w  y
-    j  m  t  v
-    h  k  s  u
-    5  7  e  g
-    4  6  d  f
-    1  3  9  c
-    0  2  8  b
+        n  q  w  y
+        j  m  t  v
+        h  k  s  u
+        5  7  e  g
+        4  6  d  f
+        1  3  9  c
+        0  2  8  b
      *
      * 所以，要求GeoHash周围的8个hash值，就相当于求出最后一个字符周围的8个字符。
      * 如果最后一个字符处于边界，还要求倒数第二个字符周围同方向的相邻字符，如果倒数第二个字符也处于边界就要求倒数第三个，以此类推
