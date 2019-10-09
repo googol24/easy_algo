@@ -8,6 +8,11 @@
 class GeoHash
 {
     /**
+     * 地球半径
+     */
+    const EARTH_RADIUS = 6378137;
+
+    /**
      * 用于 GeoHash 算法进行 base32 编码的字符库
      * 0-9、b-z（去掉a, i, l, o）这32个字母
      *
@@ -378,5 +383,33 @@ class GeoHash
         }
 
         return $base . $this->coding[strpos($this->neighbors[$direction][$type], $lastChar)];
+    }
+
+    /**
+     * 计算两个经纬坐标之间的距离
+     *
+     * @param float $latitudeA
+     * @param float $longitudeA
+     * @param float $latitudeB
+     * @param float $longitudeB
+     *
+     * @return float
+     *
+     */
+    public function getDistance($latitudeA, $longitudeA, $latitudeB, $longitudeB)
+    {
+        // 将角度转为狐度
+        $radLatitudeA  = deg2rad($latitudeA);
+        $radLatitudeB  = deg2rad($latitudeB);
+        $radLongitudeA = deg2rad($longitudeA);
+        $radLongitudeB = deg2rad($longitudeB);
+
+        // 结果
+        $distance = self::EARTH_RADIUS * acos(cos($radLatitudeA) * cos($radLatitudeB) * cos($radLongitudeA - $radLongitudeB) + sin($radLatitudeA) * sin($radLatitudeB));
+
+        // 精度
+        $distance = round($distance * 10000) / 10000;
+
+        return round($distance);
     }
 }
