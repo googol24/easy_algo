@@ -9,6 +9,7 @@ print_r(quickSort($unSortedArray));
 
 function quickSort($arr)
 {
+    // 递归出口
     if (count($arr) <= 1) {
         return $arr;
     }
